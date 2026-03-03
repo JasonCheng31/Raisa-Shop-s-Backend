@@ -28,23 +28,12 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items,
       mode: "payment",
-      success_url: "https://YOUR_FRONTEND_URL/#/success", // Replace with your deployed frontend URL
-      cancel_url: "https://YOUR_FRONTEND_URL/#/Cart",
+      success_url: "https://raisa-art-store.netlify.app/#/Success", // Replace with your deployed frontend URL
+      cancel_url: "https://raisa-art-store.netlify.app/#/Checkout",
     });
 
     // Send session URL to frontend
     res.json({ url: session.url });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Optional GET route to test Stripe connection
-app.get("/test-stripe", async (req, res) => {
-  try {
-    const balance = await stripe.balance.retrieve();
-    res.json(balance);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
