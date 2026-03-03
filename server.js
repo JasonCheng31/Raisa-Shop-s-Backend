@@ -10,7 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   const { cart } = req.body;
-
+  res.send("Route works");
   const line_items = cart.map(item => ({
     price_data: {
       currency: "usd",
